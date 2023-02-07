@@ -7,6 +7,7 @@ let image2 = document.getElementById('img2');
 let image3 = document.getElementById('img3');
 let numberOfMatchUps = 0;
 let numberOfMatchUpsAllowed = 25;
+let productQue = [];
 
 class BetaItem {
   static allProductArray = [];
