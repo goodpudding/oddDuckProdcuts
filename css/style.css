@@ -25,6 +25,7 @@ h1{
 #container{
   position: absolute;
   left: 400px;
+  height: 80%;
 }
 h2{
   width: fit-content;
@@ -38,7 +39,7 @@ h2:hover{
 }
 #votingBox{
  border: 2px solid black;
-  height: 450px;
+  height: 60%;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   
@@ -78,7 +79,7 @@ section {
   font-size: 25px;
   margin: 25px ;
   margin-top: 100px;
-  background-color: rgba(245, 245, 220, 0.795);
+  background-color: rgba(245, 245, 220, 1);
   padding: 20px;
 }
 
@@ -94,5 +95,5 @@ li{
   border: 2px solid black;
   height: 88%;
   width: 98%;
-  background-color: rgba(250, 235, 215, 0.829);
+  background-color: rgba(250, 235, 215, 1);
 }

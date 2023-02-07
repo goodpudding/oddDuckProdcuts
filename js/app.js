@@ -6,11 +6,13 @@ let image1 = document.getElementById('img1');
 let image2 = document.getElementById('img2');
 let image3 = document.getElementById('img3');
 let numberOfMatchUps = 0;
-let numberOfMatchUpsAllowed = 25;
-let productQue = [];
+let numberOfMatchUpsAllowed = 5;
+let uniqueImageCount = 9;
+let clicks = 0;
 
 class BetaItem {
   static allProductArray = [];
+  static productQue = [];
   constructor(name, filetype = 'jpg') {
     this.name = name;
     this.src = `img/${name}.${filetype}`;
@@ -46,15 +48,16 @@ function selectRandomProduct() {
 }
 
 function renderProducts() {
-  let product1 = selectRandomProduct();
-  let product2 = selectRandomProduct();
-  let product3 = selectRandomProduct();
-  while (product1 === product2) {
-    product2 = selectRandomProduct();
+  while (BetaItem.productQue.length < uniqueImageCount) {
+    let randomNumber = selectRandomProduct();
+    if (!BetaItem.productQue.includes(randomNumber)) {
+      BetaItem.productQue.push(randomNumber);
+    }
+    
   }
-  while (product1 === product3 || product2 === product3) {
-    product3 = selectRandomProduct();
-  }
+  let product1 = BetaItem.productQue.shift();
+  let product2 = BetaItem.productQue.shift();
+  let product3 = BetaItem.productQue.shift();
   image1.src = BetaItem.allProductArray[product1].src;
   image2.src = BetaItem.allProductArray[product2].src;
   image3.src = BetaItem.allProductArray[product3].src;
@@ -74,6 +77,11 @@ function renderResults() {
     li.textContent = `${BetaItem.allProductArray[i].name} had ${BetaItem.allProductArray[i].views} views and ${BetaItem.allProductArray[i].likes} likes.`;
     results.appendChild(li);
   }
+  image1.remove();
+  image2.remove();
+  image3.remove();
+  myContainer.appendChild.Chart
+  renderChart();
 }
 renderProducts();
 
@@ -90,6 +98,62 @@ function handleProductClick(event) {
     myContainer.removeEventListener('click', handleProductClick);
     myButton.addEventListener('click', renderResults);
   }
+  if (clicks === numberOfMatchUpsAllowed) {
+    myContainer.removeEventListener('click', handleProductClick);
+    myContainer.className = 'no-voting';
+    renderChart();
+  } else {
+    renderProducts();
+  }
+}
+function renderChart() {
+
+  let productLikes = [];
+  let productName = [];
+  let productViews = [];
+
+  for (let i = 0; i < BetaItem.allProductArray.length; i++) {
+    productLikes.push(BetaItem.allProductArray[i].likes);
+    productName.push(BetaItem.allProductArray[i].name);
+    productViews.push(BetaItem.allProductArray[i].views);
+  }
+  
+  let config = {
+    type: 'bar',
+    data: {
+      labels: productName,
+      datasets: [
+        {
+          label: '# of Votes',
+          data: productLikes,
+          borderWidth: 1,
+          backgroundColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ]
+        },
+        {
+          label: '# of Views',
+          data: productViews,
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  }
+  let canvasChart = document.getElementById('myChart');
+  const myChart = new Chart(canvasChart, config);
+  
 }
 
 myContainer.addEventListener('click', handleProductClick);
