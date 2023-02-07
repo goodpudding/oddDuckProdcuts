@@ -6,7 +6,7 @@ let image1 = document.getElementById('img1');
 let image2 = document.getElementById('img2');
 let image3 = document.getElementById('img3');
 let numberOfMatchUps = 0;
-let numberOfMatchUpsAllowed = 5;
+let numberOfMatchUpsAllowed = 25;
 let uniqueImageCount = 9;
 let clicks = 0;
 

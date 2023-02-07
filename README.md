@@ -1,3 +1,3 @@
 # oddDuckProdcuts
 
-![my lighthouse score](img/OddDuckProductsLighthouse.png)
+![my lighthouse score](img/lab12lighthouse.png)
