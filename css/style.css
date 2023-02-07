@@ -1,0 +1,98 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  background-image: linear-gradient(90deg, rgb(22, 132, 136),rgb(9, 156, 167),rgb(61, 51, 204),rgb(123, 93, 179),blue,indigo,rgb(119, 23, 119));
+}
+h1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 60px;
+}
+#logo{
+  display: flex;
+  margin: 15px 20px 15px 25px;
+}
+#logo img{
+  margin-right: 20px;
+}
+#results{
+  width: 400px;
+  height: 90%;
+  position: absolute;
+  border: 2px solid black;
+  padding: 10px 10px 10px 20px;
+}
+#container{
+  position: absolute;
+  left: 400px;
+}
+h2{
+  width: fit-content;
+  padding: 5px;
+  background-color: cadetblue;
+  font-size: 3rem;
+  border: 2px dashed darkblue;
+}
+h2:hover{
+  background-color: blue;
+}
+#votingBox{
+ border: 2px solid black;
+  height: 450px;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  
+  background-color:rgba(202, 181, 192, 0.685) ;
+}
+
+footer{
+  background-color: rgb(36, 77, 153);
+  width: 100%;
+  height: 10%;
+  border: 2px solid black;
+  position:absolute;
+  bottom: 0px;
+}
+#votingBox img {
+  max-width: 60%;
+  max-height: 60%;
+  margin-top: 30px; 
+  margin-left: 50px;
+  border-radius: 15%;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 4px 9px #999;
+}
+#votingBox img:hover {
+  cursor: pointer;
+  border:5px solid rgb(169, 108, 28);
+}
+/* Where I got the on click effect https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_buttons_animate3 */
+#votingBox img:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+section {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  margin: 25px ;
+  margin-top: 100px;
+  background-color: rgba(245, 245, 220, 0.795);
+  padding: 20px;
+}
+
+li{
+  list-style:circle;
+  margin-left: 45px;
+  margin-top: 15px;
+  font-size: 18px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#resultsContainer{
+  border: 2px solid black;
+  height: 88%;
+  width: 98%;
+  background-color: rgba(250, 235, 215, 0.829);
+}
