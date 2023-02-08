@@ -9,6 +9,8 @@ let numberOfMatchUps = 0;
 let numberOfMatchUpsAllowed = 25;
 let uniqueImageCount = 9;
 let clicks = 0;
+const localStorageArraySavedData =[]
+let localStorageArraySavingData = [];
 
 class BetaItem {
   static allProductArray = [];
@@ -21,6 +23,10 @@ class BetaItem {
     BetaItem.allProductArray.push(this);
   }
 }
+
+const colorsArray =["red", "blue", "purple"];
+
+
 
 let bag = new BetaItem('bag');
 let banana = new BetaItem('banana');
@@ -42,7 +48,10 @@ let unicorn = new BetaItem('unicorn');
 let waterCan = new BetaItem('water-can');
 let wineGlass = new BetaItem('wine-glass');
 
+function addToLocalStorage(){
+  localStorageArraySavedData = 
 
+}
 function selectRandomProduct() {
   return Math.floor(Math.random() * BetaItem.allProductArray.length);
 }
