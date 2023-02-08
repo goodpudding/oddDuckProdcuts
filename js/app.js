@@ -24,7 +24,6 @@ class BetaItem {
   }
 }
 
-const colorsArray =['red', 'blue', 'green'];
 
 
 
@@ -49,10 +48,9 @@ let waterCan = new BetaItem('water-can');
 let wineGlass = new BetaItem('wine-glass');
 
 function addToLocalStorage(){
-  localStorageArraySavedData.push(...colorsArray);
+  localStorageArraySavedData.push(...BetaItem.allProductArray);
   localStorage.setItem('storedArray', JSON.stringify(localStorageArraySavedData));
 }
-console.log(addToLocalStorage());
 function selectRandomProduct() {
   return Math.floor(Math.random() * BetaItem.allProductArray.length);
 }
@@ -63,7 +61,6 @@ function renderProducts() {
     if (!BetaItem.productQue.includes(randomNumber)) {
       BetaItem.productQue.push(randomNumber);
     }
-    
   }
   let product1 = BetaItem.productQue.shift();
   let product2 = BetaItem.productQue.shift();
@@ -96,7 +93,6 @@ function renderResults() {
 renderProducts();
 
 function handleProductClick(event) {
-  addToLocalStorage;
   let clickedProduct = event.target.alt;
   for (let i = 0; i < BetaItem.allProductArray.length; i++) {
     if (BetaItem.allProductArray[i].name === clickedProduct) {
