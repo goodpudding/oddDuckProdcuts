@@ -44,19 +44,19 @@ let unicorn = new BetaItem("unicorn");
 let waterCan = new BetaItem("water-can");
 let wineGlass = new BetaItem("wine-glass");
 
-function addToLocalStorage() {
-  let localStorageSavingData  = BetaItem.allProductArray;
-  localStorage.setItem(
-    "storedArray",
-    JSON.stringify(localStorageSavingData)
-  );
-}
-function removeFromLocalStorage(){
-  let savedData= localStorage.getItem('storedArray')
-  let retrievedProducts =JSON.parse(savedData);
-  console.log(retrievedProducts.bag.name);
+// function addToLocalStorage() {
+//   let localStorageSavingData  = BetaItem.allProductArray;
+//   localStorage.setItem(
+//     "storedArray",
+//     JSON.stringify(localStorageSavingData)
+//   );
+// }
+// function removeFromLocalStorage(){
+//   let savedData= localStorage.getItem('storedArray')
+//   let retrievedProducts =JSON.parse(savedData);
+//   console.log(retrievedProducts.bag.name);
 
-}
+// }
 function selectRandomProduct() {
   return Math.floor(Math.random() * BetaItem.allProductArray.length);
 }
