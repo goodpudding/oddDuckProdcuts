@@ -7,7 +7,7 @@ let image2 = document.getElementById("img2");
 let image3 = document.getElementById("img3");
 let numberOfMatchUps = 0;
 let numberOfMatchUpsAllowed = 25;
-let uniqueImageCount = 25;
+let uniqueImageCount = 9;
 let clicks = 0;
  
 
@@ -95,6 +95,7 @@ function renderResults() {
   image3.remove();
   myContainer.appendChild.Chart;
   renderChart();
+  myButton.removeEventListener("click", renderResults);
 }
 renderProducts();
 
@@ -169,4 +170,4 @@ function renderChart() {
   const myChart = new Chart(canvasChart, config);
 }
 
-myContainer.addEventListener('click', handleProductClick);
+myContainer.addEventListener("click", handleProductClick);
