@@ -1,5 +1,5 @@
 "use strict";
-
+// Global Variables
 let myContainer = document.getElementById("votingBox");
 let myButton = document.getElementById("resultsButton");
 let image1 = document.getElementById("img1");
@@ -9,58 +9,26 @@ let numberOfMatchUps = 0;
 let numberOfMatchUpsAllowed = 25;
 let uniqueImageCount = 9;
 let clicks = 0;
- 
 
-
+// Contructor to build my items and add them to the array allProductArray
 class BetaItem {
   static allProductArray = [];
   static productQue = [];
-  constructor(name, filetype = "jpg") {
+  constructor(name, filetype = "jpg", views = 0, likes = 0) {
     this.name = name;
     this.src = `img/${name}.${filetype}`;
-    this.views = 0;
-    this.likes = 0;
+    this.views = views;
+    this.likes = likes;
     BetaItem.allProductArray.push(this);
   }
 }
 
-let bag = new BetaItem("bag");
-let banana = new BetaItem("banana");
-let bathroom = new BetaItem("bathroom");
-let boots = new BetaItem("boots");
-let breakfast = new BetaItem("breakfast");
-let bubblegum = new BetaItem("bubblegum");
-let chair = new BetaItem("chair");
-let cthulhu = new BetaItem("cthulhu");
-let dogDuck = new BetaItem("dog-duck");
-let dragon = new BetaItem("dragon");
-let pen = new BetaItem("pen");
-let petSweep = new BetaItem("pet-sweep");
-let scissors = new BetaItem("scissors");
-let shark = new BetaItem("shark");
-let sweep = new BetaItem("sweep", "png");
-let tauntaun = new BetaItem("tauntaun");
-let unicorn = new BetaItem("unicorn");
-let waterCan = new BetaItem("water-can");
-let wineGlass = new BetaItem("wine-glass");
-
-// function addToLocalStorage() {
-//   let localStorageSavingData  = BetaItem.allProductArray;
-//   localStorage.setItem(
-//     "storedArray",
-//     JSON.stringify(localStorageSavingData)
-//   );
-// }
-// function removeFromLocalStorage(){
-//   let savedData= localStorage.getItem('storedArray')
-//   let retrievedProducts =JSON.parse(savedData);
-//   console.log(retrievedProducts.bag.name);
-
-// }
+// Creating a random number to pick products by random
 function selectRandomProduct() {
   return Math.floor(Math.random() * BetaItem.allProductArray.length);
 }
 
+//Renders 3 images on the screen for the viewer to vote on
 function renderProducts() {
   while (BetaItem.productQue.length < uniqueImageCount) {
     let randomNumber = selectRandomProduct();
@@ -80,9 +48,9 @@ function renderProducts() {
   BetaItem.allProductArray[product1].views++;
   BetaItem.allProductArray[product2].views++;
   BetaItem.allProductArray[product3].views++;
-  
 }
 
+//After the user has voted 25 times, the user can see their results
 function renderResults() {
   let results = document.querySelector("ul");
   for (let i = 0; i < BetaItem.allProductArray.length; i++) {
@@ -97,8 +65,9 @@ function renderResults() {
   renderChart();
   myButton.removeEventListener("click", renderResults);
 }
-renderProducts();
 
+
+//This is to handle the clicks
 function handleProductClick(event) {
   let clickedProduct = event.target.alt;
   for (let i = 0; i < BetaItem.allProductArray.length; i++) {
@@ -109,7 +78,7 @@ function handleProductClick(event) {
   if (numberOfMatchUps < numberOfMatchUpsAllowed) {
     renderProducts();
     numberOfMatchUps++;
-    console.log(numberOfMatchUps);
+  
   } else {
     myContainer.removeEventListener("click", handleProductClick);
     myButton.addEventListener("click", renderResults);
@@ -121,18 +90,22 @@ function handleProductClick(event) {
   } else {
     renderProducts();
   }
+  let stringifiedPictures = JSON.stringify(BetaItem.allProductArray);
+  localStorage.setItem('storedData', stringifiedPictures);
 }
+
+//This is to create the chart
 function renderChart() {
   let productLikes = [];
   let productName = [];
   let productViews = [];
-
+  
   for (let i = 0; i < BetaItem.allProductArray.length; i++) {
     productLikes.push(BetaItem.allProductArray[i].likes);
     productName.push(BetaItem.allProductArray[i].name);
     productViews.push(BetaItem.allProductArray[i].views);
   }
-
+  
   let config = {
     type: "bar",
     data: {
@@ -170,4 +143,35 @@ function renderChart() {
   const myChart = new Chart(canvasChart, config);
 }
 
+
+let storedData = localStorage.getItem('storedData');
+
+
+if (storedData){
+  let parsedData = JSON.parse(storedData);
+  BetaItem.allProductArray = parsedData;
+}else{
+// Creating new instances of BetaItem
+let bag = new BetaItem('bag');
+let banana = new BetaItem('banana');
+let bathroom = new BetaItem('bathroom');
+let boots = new BetaItem('boots');
+let breakfast = new BetaItem('breakfast');
+let bubblegum = new BetaItem('bubblegum');
+let chair = new BetaItem('chair');
+let cthulhu = new BetaItem('cthulhu');
+let dogDuck = new BetaItem('dog-duck');
+let dragon = new BetaItem('dragon');
+let pen = new BetaItem('pen');
+let petSweep = new BetaItem('pet-sweep');
+let scissors = new BetaItem('scissors');
+let shark = new BetaItem('shark');
+let sweep = new BetaItem('sweep', 'png');
+let tauntaun = new BetaItem('tauntaun');
+let unicorn = new BetaItem('unicorn');
+let waterCan = new BetaItem('water-can');
+let wineGlass = new BetaItem('wine-glass');
+}
+renderProducts();
+//Turns the event listener on
 myContainer.addEventListener("click", handleProductClick);
